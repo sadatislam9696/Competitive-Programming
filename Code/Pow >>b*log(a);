@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long int  a,b,c,d;
+    cin>>a>>b>>c>>d;
+
+    if(b*log(a)>d*log(c))
+    // this log is in base e by default (natural logarithm (ln)),
+    {
+      cout<<"YES"<<'\n';  
+    }
+    else 
+    {
+      cout<<"NO"<<'\n';  
+    }
+    // intput 3 2 5 4;
+    //  3^2 = 9 and 5^4 = 625 then 9 < 625 so the answer is NO.
+      
+    
+    
+    return 0;
+}
+
