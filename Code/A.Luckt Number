@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool is_lucky(int num)
+{
+    while(num>0)
+    {
+        int digit=num%10;
+        if(digit==4 or digit==7)
+        {
+
+        }
+        else
+        {
+            return false;
+        }
+        num/=10;
+    }
+    return true;
+    /*jodi lucky hoi tahole true return korbe na hole er agei false return korbe */
+}
+
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+   int cnt=0;
+    for(int i=a;i<=b;i++)
+    {
+        if(is_lucky(i))
+        {
+            cout<<i<<' ';
+            cnt++;        //jodi licky hoi cnt er man barabe; 
+        }
+    }
+    if(cnt==0)      //cnt jodi zero thake tahole kono lucky number pawa jaini;
+    {
+        cout<<-1;
+    }
+
+    return 0;
+}
+
+
+
+
+
