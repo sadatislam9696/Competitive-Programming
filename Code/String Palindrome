@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s;
+    cin >> s;
+    int len = s.length();
+    // for example for s = "abba", len = 4,
+    // so 0th and 3rd char should be equal
+    // 1st and 2nd char should be equal
+    // but normal order and reverse order should be equal
+    // for s[i] should be equal to s[len - i - 1]
+    for (int i=0;i<len;i++)
+    {
+        int j = len - i - 1;
+        if (s[i] != s[j])
+        {
+            cout<<"NO\n";
+            return 0;
+        }
+    }
+    cout<<"YES\n";
+    return 0;
+}
+
+
+
+
+
+
+
