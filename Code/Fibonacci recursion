@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int fibo(int num)
+{
+   if(num==0 or num==1)
+   {
+     return num;
+   }
+   else
+     return fibo(num-1)+fibo(num-2);
+}
+
+int main()
+{
+    int n,i=0;
+    cin>>n;
+
+    while(i<n)  //base case
+    {
+        cout<<" "<<fibo(i);
+        i++;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
