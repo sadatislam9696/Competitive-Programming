@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    int len = s.length();
+    int fr[26];
+
+    for(int i=0;i<26;i++)
+    {
+        fr[i]=0;
+    }
+    for(int i=0;i<len ;i++)
+    {
+        int rankk = s[i]-'a';
+        fr[rankk]++;
+    }
+    for(char ch='a';ch<'z';ch++)
+    {
+        int rankk = ch-'a';
+        if(fr[rankk]>0)
+        {
+            cout<<ch<<" : "<<fr[rankk]<<'\n';
+        }
+    }
+    return 0;
+}
