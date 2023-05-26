@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define nn '\n'
+
+int main()
+{
+    int num;
+    cin>>num;
+    string result;
+
+    result = (num>0)?"Positive number ":"Negative number";
+    cout<<result;
+    return 0;
+}
