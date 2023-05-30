@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define nn '\n'
+#define optimize(); ios_base::sync_with_stdio(0);cin.tie();
+
+int main()
+{
+    optimize();
+
+    int a[10]={1,2,3,4,5};
+    int x;cin>>x;
+
+    int left , right, m;
+    left = 0;
+    right = 4;
+
+    while(left<=right)
+    {
+        m = (left+right)/2;
+        if(a[m]==x)
+        {
+            cout<<m<<nn;
+            return 0 ;
+        }
+        else if(a[m]<x)left = m+1;
+        else right = m -1;
+    }
+    cout<<-1<<nn;
+    return 0;
+}
