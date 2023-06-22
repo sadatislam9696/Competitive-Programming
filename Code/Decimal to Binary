@@ -1,0 +1,53 @@
+/*Bismillahir Rahmanir Rahim*/
+
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define pop pop_back
+#define in insert
+#define ll long long
+#define nn '\n'
+#define ss " "
+#define optimize(); ios_base::sync_with_stdio(0);cin.tie();
+#define test  int t; cin>>t;while(t--)
+#define ff first
+#define sc second
+/*.............start...........*/
+
+int main()
+{
+    test
+    {
+        int n;
+        cin>>n;
+
+        int one_cnt=0;
+
+        while(n>0)
+        {
+           int last = n%2;
+           if(last==1)
+           {
+               one_cnt++;
+           }
+           n/=2;
+        }
+        int dec=0;
+
+        for(int i=1;i<=one_cnt;i++)
+        {
+            dec = (dec*2)+1;
+        }
+
+        cout<<dec<<nn;
+    }
+/*..............Question............................................................................................................
+.    @    Given a number N. Print the result of doing the following operation on N:                                                .
+.    @    Convert N to its binary representation.                                                                                  .
+.    @    Count number of ones in the above binary representation.                                                                 .
+.    @    Print the equivalent decimal number that its binary representation has only the number of ones that were counted above.  .
+.    @    For example: (10)decimal = (1010)binary has 2 ones "11", after converting "11" to decimal number it will become 3.       .
+...................................................................................................................................*/
+
+    return 0;
+}
