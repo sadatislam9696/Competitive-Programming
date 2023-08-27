@@ -1,0 +1,75 @@
+/*.....................start.....................*/
+
+int check_bit(int i , int j)
+{
+    return (i >> j)&1;
+}
+int main()
+{
+    FAST_IO
+    
+    test
+    {
+        int n;
+        cin >> n;
+
+        int cnt = 0;
+
+        for(int i = 1; i <= n ; i++)
+        {
+            for(int j = 0; i < 32 ; j++)
+            {
+                if(check_bit(i , j)) // o(t * n^2  * log(n));
+                {
+                    cnt++;
+                }
+            }
+        }
+
+        cout << cnt << nn;
+        
+   /*  test case 1;
+       n == 3;
+       when n = 1 then 1 er binary = ..001 on bits = 1;
+       when n = 2 then 2 er binary = ..010 on bits = 1;
+       when n = 3 then 3 er binary = ..011 on bits = 2;
+       
+       yoo  total on bits =  4  ;
+       
+     */ 
+    }
+}
+//////////////////////////////////////
+////////////////////////////////////
+//////////////////////////////////
+
+// Another  way  of count on bits 1 to  n ;;
+
+int main()
+{
+    FAST_IO
+
+    test
+    {
+        int n;
+        cin >> n;
+
+        int cnt = 0;
+
+        for(int i = 1; i <= n ; i++)
+        {
+            cnt += __builtin_popcount(i); //o(1);
+        }
+
+        cout << cnt << nn;
+    }
+    /*  test case 1;
+       n == 3;
+       when n = 1 then 1 er binary = ..001 on bits = 1;
+       when n = 2 then 2 er binary = ..010 on bits = 1;
+       when n = 3 then 3 er binary = ..011 on bits = 2;
+       
+       yoo  total on bits =  4  ;
+       
+     */ 
+}
