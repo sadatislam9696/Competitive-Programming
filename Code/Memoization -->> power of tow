@@ -1,0 +1,45 @@
+/******************************<*>*********************************/
+
+/*  sample input == 10;
+    2^10 == 1024;
+    output == 1024;
+*/
+
+int memo[200];
+
+int fun(int n)
+{
+    if(n == 0)
+    {
+        return 1;
+    }
+    if(memo[n] != -1)
+    {
+        return memo[n];
+    }
+
+    return  memo[n] = fun(n-1) + fun(n-1);
+
+}
+
+int main()
+{
+    FAST_IO
+
+    int t = 1;
+    //cin >> t;
+    while( t-- )
+    {
+        int n;
+        cin >> n;
+
+        for(int i = 0; i < 200; i++)
+        {
+           memo[i] = -1;
+        }
+
+        cout << fun(n);
+
+    }
+    return  0;
+}
