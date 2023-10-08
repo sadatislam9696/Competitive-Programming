@@ -1,0 +1,42 @@
+int main()
+{
+    FAST_IO
+
+    int t = 1;
+    //cin >> t;
+    while(t--)
+    {
+        // n = 5;
+        // 1 2 3 5'
+        //missing number = 4;
+        
+        // 1^1 = 0;
+        // 2^2 = 0;
+        // 3^3 = 0;
+        // 5^4 != 0;
+        
+        // so ans = 4;
+        
+        int n;
+        cin >> n;
+        int a[n];
+
+        for(int i = 1; i < n; i++)
+        {
+            cin >> a[i];
+        }
+
+        for(int i = 1,j = 1; i < n; i++, j++)
+        {
+            if((a[i]^j) != 0)
+            {
+                cout << "Missing number : " << j << nn;
+                break;
+            }
+        }
+
+    }
+    return 0;
+}
+
+
