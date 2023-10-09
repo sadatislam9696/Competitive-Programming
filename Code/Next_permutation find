@@ -1,0 +1,38 @@
+int main()
+{
+    FAST_IO
+
+    int t = 1;
+    //cin >> t;
+    while(t--)
+    {
+        int n = 3;
+        int a[] = {1, 2, 3};
+        
+        /*
+        
+        lexicographycally print hobe : 
+        
+        1 2 3
+        1 3 2
+        2 1 3
+        2 3 1
+        3 1 2
+        3 2 1
+        
+        */
+
+        do
+        {
+            for(int i = 0; i < n; i++)
+            {
+                cout << a[i] << " ";
+            }
+
+            cout << nn;
+        }
+        while(next_permutation(a, a + n));
+
+    }
+    return 0;
+}
