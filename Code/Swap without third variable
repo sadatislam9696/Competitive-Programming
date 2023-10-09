@@ -1,0 +1,18 @@
+int main()
+{
+    FAST_IO
+
+    int t = 1;
+    //cin >> t;
+    while(t--)
+    {
+        int x = 5, y = 10;
+
+        x = x * y;  //  x = (5 * 10) = 50;
+        y = x / y;  //  y = (50 / 10) = 5;
+        x = x / y;  //  x = (50 / 5) = 10;
+
+        cout << x << " " << y; //  10    5;
+    }
+    return 0;
+}
