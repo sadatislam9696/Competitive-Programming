@@ -1,0 +1,49 @@
+for(int i = 0; i < n; i++)
+        {
+            // lower bound
+            ll x = L - ar[i];
+            ll l = i + 1, r = n - 1;
+            ll left = n;
+            while(l <= r)
+            {
+                ll m = (l + r)/2;
+                if(ar[m] < x)
+                {
+                    l = m + 1;
+                }
+                else
+                {
+                    left = m;
+                    r = m - 1;
+                }
+            }
+ 
+            x = R - ar[i];
+            l = i + 1, r = n - 1;
+ 
+            ll right = n;
+ 
+             while(l <= r)
+            {
+                ll m = (l + r)/2;
+                if(ar[m] <= x)
+                {
+                    l = m + 1;
+                }
+                else
+                {
+                    right = m;
+                    r = m - 1;
+                }
+            }
+ 
+          //  cout<<left<<ss<<right<<nn;
+ 
+            if(left < right)
+            {
+                ans += right - left;
+            }
+ 
+        }
+ 
+        cout<<ans<<nn;
