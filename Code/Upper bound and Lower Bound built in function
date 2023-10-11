@@ -1,0 +1,10 @@
+for (int i = 0; i < n; i++)
+        {
+            ans += upper_bound(v.begin(), v.end(), r - v[i]) - v.begin();
+            ans -= lower_bound(v.begin(), v.end(), l - v[i]) - v.begin();
+            if (l <= 2 * v[i] && 2 * v[i] <= r)
+            {
+                ans--;
+            }
+        }
+        cout << "Case " << i << ": " << ans / 2 << "\n";
