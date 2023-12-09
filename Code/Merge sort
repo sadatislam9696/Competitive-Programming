@@ -1,0 +1,78 @@
+/**   Bismillahir Rahmanir Rahim    **/
+
+#include<bits/stdc++.h>
+using   namespace  std;
+
+#define    nn      '\n'
+#define    ll long long
+
+vector<int> merge(vector<int>left, vector<int>right)
+{
+    vector<int>v;
+    int i = 0, j = 0;
+
+    while(i < left.size() and j < right.size())
+    {
+        if(left[i] < right[j])
+        {
+            v.push_back(left[i++]);
+        }
+        else v.push_back(right[j++]);
+    }
+
+    while(i < left.size())
+    {
+        v.push_back(left[i++]);
+    }
+
+    while(j < right.size())
+    {
+        v.push_back(right[j++]);
+    }
+
+    return v;
+}
+vector<int>a;
+vector<int> merge_sort(int left, int right)
+{
+    if(left == right)
+    {
+        return {a[left]};
+    }
+    int mid = left + right >> 1;
+
+    vector<int>L = merge_sort(left, mid);
+    vector<int>R = merge_sort(mid + 1, right);
+
+
+    return merge(L, R);
+}
+
+int32_t main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    int t  = 1;
+    //cin >> t;
+    while(t--)
+    {
+       int n;
+       cin >> n;
+
+       a.resize(n);
+       for(int i = 0; i < n; i++)
+       {
+           cin >> a[i];
+       }
+
+       vector<int>ans = merge_sort(0, n - 1);
+
+       for(int i = 0; i < n; i++)
+       {
+           cout << ans[i] << ' ';
+       }
+    }
+    return 0;
+}
+
