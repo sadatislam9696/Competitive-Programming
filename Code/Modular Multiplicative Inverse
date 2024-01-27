@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using   namespace   std;
+#define    ll  long long
+#define    ull unsigned long long
+#define    nn        '\n'
+
+int inverse(int a, int mod)
+{
+    for(int i = 1; i < mod; i++)
+    {
+        if(a * i % mod == 1)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    //cin >> t;
+    while(t--)
+    {
+        /**  we know that (a * i % mod == 1) then (i) is
+            Modular Multiplicative Inverse ; 
+            that means (1 / a = i) or (a inverse 1 == i) if 1 / a = i then a * i == 1;
+            => (a * i % mod == 1)  = (((a % mod) * (i % mod)) % mod == 1);
+            that's why if (i > mod) we can do if = (i % mod) then (i) is (i < mod)
+            that's why in the inverse function we finding (i = 1 to mod - 1); 
+        **/
+            
+        cout << inverse(3, 6) << nn; /// -1
+        cout << inverse(2, 5) << nn; /// 3
+    }
+    return 0;
+}
