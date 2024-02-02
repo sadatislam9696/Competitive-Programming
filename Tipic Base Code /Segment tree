@@ -36,6 +36,23 @@ int query(int node, int l, int r, int i, int j){
     int right_value = query(2 * node + 1, ((l + r) / 2) + 1, r, i, j);
     return min(left_value, right_value);
 }
+
+///   Update part 
+
+void update(int node, int l, int r, int i, int newvalue)
+{
+    if (i > r || i < l)
+        return;
+    if (l >= i && r <= i) { 
+        tree[node] = newvalue; 
+        return;
+    }
+    update(2 * node, l,((l + r)/ 2), i, newvalue);
+    update(2 * node + 1, ((l + r)/ 2) + 1, i, newvalue);
+    
+    tree[node] = tree[2 * node] + tree[2 * node + 1];
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
