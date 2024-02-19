@@ -1,0 +1,52 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+/**
+    n = 12;
+    
+    1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12;
+    1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 1 + 2 + 3;
+    
+    ==  51;
+    
+**/
+    
+int sum_digit(int n) {
+    
+   int digit = log10(n) + 1;
+   int d = digit - 1;
+
+   int *place = new int[d + 1];
+   place[0] = 0;
+   place[1] = 45;
+
+   for(int i = 2; i <= d; i++)
+      place[i] = place[i - 1] * 10 + 45 * ceil(pow(10, i - 1));
+
+   int power = ceil(pow(10, d));
+   int msd = n / power;
+   
+   return msd *place[d] + (msd * (msd - 1) / 2) * power +
+   msd * (1 + n % power) + sum_digit(n % power);
+}
+
+int main() {
+
+   int t = 1;
+   cin >> t;
+   while(t--){
+     
+     int n;
+     cin >> n;
+     
+     if(n < 10){
+        cout <<  (n * (n + 1)) / 2 << endl;
+     }
+     else cout  << sum_digit(n) << endl;
+     
+   }
+
+   return 0;
+
+}
