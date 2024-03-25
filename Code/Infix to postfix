@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>>
+using namespace std;
+#define  nn   '\n'
+
+int prece(char ch){
+    if(ch == '+' or ch == '-') return 1;
+    if(ch == '*' or ch == '/') return 2;
+    if(ch == '^') return 3;
+
+    return 0;
+}
+
+int main(){
+    string infix, postfix; /// input  :    A+(B*C-(D/E^F)*G)*H
+    cin >> infix;          /// output :    ABC*DEF^/G*-H*+
+
+    stack<char>s;
+    for(int i = 0; i < infix.size(); i++){
+        char ch = infix[i];
+        if(isalnum(ch)){
+            postfix += ch;
+        }
+        else if(ch == '('){
+             s.push(ch);
+        }
+        else if(ch == ')'){
+            while(s.top() != '('){
+              postfix += s.top();
+              s.pop();
+            }
+            s.pop();
+        }
+        else{
+            while(!s.empty() and prece(ch) <= prece(s.top())){
+                postfix += s.top();
+                s.pop();
+            }
+            s.push(ch);
+        }
+    }
+    while(!s.empty()){
+        postfix += s.top();
+        s.pop();
+    }
+
+    cout << postfix << nn;
+
+    return 0;
+}
