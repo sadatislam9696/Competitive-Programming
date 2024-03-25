@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>>
+using namespace std;
+#define  nn   '\n'
+
+int akr(int m, int n){
+    if(m == 0){
+        return (n + 1);
+    }
+    if(m > 0 and n == 0){
+        return akr(m - 1, 1);
+    }
+    if(m > 0 and n > 0){
+        return akr((m - 1), akr(m, n - 1));
+    }
+}
+int main(){
+
+    int m, n;
+    cin >> m >> n;
+
+    int a = akr(m, n);
+    cout << a << nn;
+
+    return 0;
+}
