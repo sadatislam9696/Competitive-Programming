@@ -1,0 +1,118 @@
+/***   Bismillahir Rahmanir Rahim   ***/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define     nn          '\n'
+#define     ss          second
+#define     ff          first
+#define     yes         cout << "YES" << nn
+#define     no          cout << "NO" << nn
+#define     sp(d, n)    fixed << setprecision(d) << n
+#define     srt(v)      sort(v.begin(),v.end());
+#define     rsrt(v)     sort(v.rbegin(),v.rend());
+#define     rev(v)      reverse(v.begin(),v.end());
+#define     mem(a, x)   memset(a, x, sizeof a)
+
+using ll = long long;
+using ld = long double;
+using ull = unsigned long long;
+const ld pi = acos(-1.0);
+template <typename T>
+using minHeap = priority_queue<T, vector<T>, greater<T>>;
+
+int dx[6] = {0, 1, -1, 0, 0};
+int dy[6] = {0, 0, 0, 1, -1};
+
+const int M = 1e9 + 7;
+const int N = 1e6 + 5;
+
+vector<pair<int, int>>adj[N];
+ll dis[N], inf = 1e16;
+int path[N];
+
+void pre_cal()
+{
+
+}
+
+void dijis(int s){
+    priority_queue<pair<int, int>>q;
+    dis[s] = 0;
+    path[s] = -1;
+
+    q.push({dis[s], s});
+    while(!q.empty()){
+        s = q.top().second;
+        q.pop();
+
+        for(auto [x, y] : adj[s]){
+            int v = x;
+            int w = y;
+
+            if((dis[s] + w) < dis[v]){
+                path[v] = s;
+                dis[v] = (1LL * dis[s] + w);
+                q.push({-dis[v], v});
+            }
+        }
+    }
+}
+void solution()
+{
+   int n, m;
+   cin >> n >> m;
+
+   for(int i = 0; i < m; i++){
+     int u, v, w;
+     cin >> u >> v >> w;
+
+     adj[u].push_back({v, w});
+     adj[v].push_back({u, w});
+   }
+
+   for(int i = 1; i <= N; i++){
+     dis[i] = inf;
+   }
+
+   dijis(1);
+
+   if(dis[n] == inf){
+      cout << -1 << nn;
+   }
+   else{
+     vector<int>ans;
+     ans.push_back(n);
+     int x = n;
+     while(path[x] != -1){
+        x = path[x];
+        ans.push_back(x);
+     }
+
+     reverse(ans.begin(), ans.end());
+     for(auto it : ans){
+        cout << it << " ";
+     }
+   }
+}
+
+int main()
+{
+    // freopen("in","r",stdin);
+    // freopen("out","w",stdout);
+
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    //pre_cal();
+
+    int t = 1;
+    //cin >> t;
+    //cin.ignore();
+    while(t--){
+        solution();
+    }
+    return 0;
+}
+
