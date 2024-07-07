@@ -1,0 +1,25 @@
+void solution(){
+    int n, p;
+    cin >> n >> p;
+
+    /// 1st approach
+
+    int cur = p, ans = 0;
+    while(cur >= p){
+        ans += n / cur;
+        if(cur <= n / p){
+            cur *= p;
+        }
+        else break;
+    }
+    cout << ans << nn;
+
+    /// 2 nd approach
+
+    ans = 0; cur = p;
+    while(n){
+        ans += n / p;
+        n /= p;
+    }
+    cout << ans << nn;
+}
