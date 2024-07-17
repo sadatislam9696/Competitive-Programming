@@ -1,0 +1,53 @@
+/***   Bismillahir Rahmanir Rahim   ***/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define  nn '\n'
+using ll = long long;
+
+void solution(){
+    int n, q; 
+    cin >> n >> q; 
+
+    int a[n + 1];
+    ll sum = 0;
+    for(int i = 1; i <= n; i++){
+        cin >> a[i];
+
+        sum += 1LL * a[i] * (n - 2 * i + 1);
+    }
+    //cout << sum << nn;
+
+    while(q--){
+        int ty; cin >> ty; 
+        if(ty == 1){
+            cout << sum << nn;
+        }
+        else{
+            int x, v; 
+            cin >> x >> v; 
+
+            ++x;
+            sum -= 1LL * a[x] * (n - 2 * x + 1);
+            a[x] = v;
+            sum += 1LL * a[x] * (n - 2 * x + 1);
+        }
+    }
+
+}
+
+int32_t main(){
+   
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);cout.tie(nullptr);
+
+    int t = 1, c = 1;
+    cin >> t;
+    //cin.ignore();
+    while(t--){
+        cout << "Case " << c++ << ": " << nn;
+        solution();
+    }
+    return 0;
+}
