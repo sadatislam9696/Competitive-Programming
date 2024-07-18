@@ -1,0 +1,49 @@
+/***   Bismillahir Rahmanir Rahim   ***/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define  nn '\n'
+using ll =  long long;
+
+const int M = 1e5;
+const int N = 1e7 + 1;
+
+bool prime[N];
+vector<int>v;
+void find_prime(){
+    prime[1] = true; 
+    for(int i = 2; i <= N; i++){
+        if(!prime[i]){
+            v.push_back(i);
+            for(int j = i + i; j <= N; j += i){
+               prime[j] = true;
+            }
+        }
+    }
+}                             
+void solution(){
+    int n; 
+    cin >> n; 
+
+    for(int i = 0; i < n; i++){
+        cout << v[i] << ' ';
+    }
+}
+
+int32_t main(){
+   
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);cout.tie(nullptr);
+
+    find_prime();
+
+    int t = 1, c = 1;
+    //cin >> t;
+    //cin.ignore();
+    while(t--){
+        //cout << "Case " << c++ << ": ";
+        solution();
+    }
+    return 0;
+}
