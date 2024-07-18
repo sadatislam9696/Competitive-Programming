@@ -22,28 +22,9 @@ void find_prime(){
         }
     }
 }                             
-void solution(){
-    int n; 
-    cin >> n; 
-
-    for(int i = 0; i < n; i++){
-        cout << v[i] << ' ';
-    }
-}
-
 int32_t main(){
-   
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);cout.tie(nullptr);
 
     find_prime();
 
-    int t = 1, c = 1;
-    //cin >> t;
-    //cin.ignore();
-    while(t--){
-        //cout << "Case " << c++ << ": ";
-        solution();
-    }
     return 0;
 }
