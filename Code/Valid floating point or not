@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int t;
+    cin >> t;
+    while(t--){
+        string s;
+        cin >> s;
+
+        int cnt_digit = 0, cnt_dot = 0;
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] == '.')cnt_dot++;
+            if(s[i] >= 0 and s[i] <= 9)cnt_digit++;
+        }
+        if(s[s.size() - 1] == '.'){
+            cout << "Not valid " << '\n';
+        }
+        else if((cnt_digit - cnt_dot) == (cnt_digit - 1)){
+            cout << "Valid " << '\n';
+        }
+        else cout << "Not valid " << '\n';
+    }
+
+    return 0;
+}
