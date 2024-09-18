@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool is_digit(int d){
+    return (d >= '0' and d <= '9');
+}
+
+bool is_alpha(char c){
+    return ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z'));
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while(t--){
+        string s; cin >> s;
+
+        int flag = 0;
+        if(s[0] == '_' or is_alpha(s[0])){
+            for(int i = 1; i < s.size(); i++){
+                if(!(s[i] == '_' or is_alpha(s[i]) or is_digit(s[i]))){
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+        else flag++;
+
+        if(flag)cout << "InValid datatype" << '\n';
+        else cout << "Valid datatype" << '\n';
+    }
+
+    return 0;
+}
