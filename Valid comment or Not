@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void sol(){
+    string s;
+    cin >> s;
+
+    if(s[0] == s[1] and s[0] == '/'){
+        cout << "Valid comment" << '\n';
+        return;
+    }
+
+    if(s[0] == '/' and s[1] == '*'){
+        for(int i = s.size() - 1; i >= 2; i--){
+            if(s[i] == '/' and s[i - 1] == '*'){
+                cout << "Valid comment" << '\n';
+                return;
+            }
+        }
+    }
+    cout << "InValid comment" << '\n';
+}
+int main()
+{
+    //
+
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        sol();
+    }
+
+    return 0;
+}
