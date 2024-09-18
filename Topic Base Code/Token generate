@@ -1,0 +1,152 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool is_float(string s){
+        if(s.size() == 0) return false;
+
+        int cnt_digit = 0, cnt_dot = 0;
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] == '.')cnt_dot++;
+            if(s[i] >= '0' and s[i] <= '9'){
+                cnt_digit++;
+            }
+        }
+        if(cnt_digit == (s.size() - cnt_dot))return true;
+        return false;
+}
+
+
+bool is_digit(char d){ return (d >= '0' and d <= '9'); }
+bool is_alpha(char c){ return ((c >= 'a' and c <= 'z') or (c >= 'A' and c <= 'Z')); }
+
+int is_identifier(string s){
+        int flag = 0;
+        if(s[0] == '_' or is_alpha(s[0])){
+            for(int i = 1; i < s.size(); i++){
+                if(!(s[i] == '_' or is_alpha(s[i]) or is_digit(s[i]))){
+                    flag = 1; break;
+                }
+            }
+        } else flag++;
+
+        if(flag)return false;
+        return true;
+}
+
+bool is_intiger(string s){
+    int cnt = 0;
+    if(s.size() == 0)return false;  /// 3443434
+
+    for(int i = 0; i < s.size(); i++){
+        if(s[i] >= '0' and s[i] <= '9')cnt++;
+    }
+    if(cnt == s.size())return true;
+    return false;
+}
+
+int main(){
+
+    map<string, int>keyword;
+    keyword["auto"] = 1;     keyword["break"] = 1;     keyword["case"] = 1;     keyword["char"] = 1;     keyword["class"] = 1;   keyword["const"] = 1;
+    keyword["continue"] = 1; keyword["default"] = 1;   keyword["delete"] = 1;   keyword["do"] = 1;       keyword["double"] = 1;  keyword["dynamic_cast"] = 1;
+    keyword["else"] = 1;     keyword["enum"] = 1;      keyword["explicit"] = 1; keyword["extern"] = 1;   keyword["float"] = 1;   keyword["for"] = 1;
+    keyword["friend"] = 1;   keyword["goto"] = 1;      keyword["if"] = 1;       keyword["inline"] = 1;   keyword["int"] = 1;     keyword["long"] = 1;
+    keyword["mutable"] = 1;  keyword["namespace"] = 1; keyword["new"] = 1;      keyword["noexcept"] = 1; keyword["nullptr"] = 1; keyword["operator"] = 1;
+    keyword["private"] = 1;  keyword["protected"] = 1; keyword["public"] = 1;   keyword["register"] = 1; keyword["return"] = 1;  keyword["typedef"] = 1;
+    keyword["short"] = 1;    keyword["signed"] = 1;    keyword["sizeof"] = 1;   keyword["static"] = 1;   keyword["struct"] = 1;  keyword["switch"] = 1;
+    keyword["template"] = 1; keyword["this"] = 1;      keyword["throw"] = 1;    keyword["true"] = 1;     keyword["try"] = 1;     keyword["main"] = 1;
+    
+
+    map<string, int>operatorMap;
+    operatorMap["+"] = 1;   operatorMap["-"] = 1;  operatorMap["*"] = 1;  operatorMap["/"] = 1;  operatorMap["%"] = 1;  operatorMap["++"] = 1; operatorMap["--"] = 1;
+    operatorMap["="] = 1;   operatorMap["+="] = 1; operatorMap["-="] = 1; operatorMap["*="] = 1; operatorMap["/="] = 1; operatorMap["%="] = 1; operatorMap["=="] = 1;
+    operatorMap["!="] = 1;  operatorMap["<"] = 1;  operatorMap[">"] = 1;  operatorMap["<="] = 1; operatorMap[">="] = 1; operatorMap["&&"] = 1; operatorMap["||"] = 1;
+    operatorMap["!"] = 1;   operatorMap["&"] = 1;  operatorMap["|"] = 1;  operatorMap["^"] = 1;  operatorMap["->"] = 1; operatorMap["~"] = 1;  operatorMap["<<"] = 1;
+    operatorMap[">>"] = 1;  operatorMap["<<="] = 1;operatorMap[">>="] = 1;
+
+    map<string, int>symbol;
+    symbol["()"]= 1; symbol["[]"] = 1; symbol["{}"] = 1; symbol["["] = 1; symbol["]"] = 1; symbol["("] = 1;  symbol[")"] = 1;
+    symbol["{"]= 1;  symbol["}"] = 1;  symbol[":"] = 1;  symbol[";"] = 1; symbol["'"]= 1;  symbol[","] = 1;
+
+    vector<string>code;
+    string line;
+
+    while(true) {
+        getline(cin, line);
+        if(line == "0")  break;
+        code.push_back(line);
+    }
+
+    vector<string>KEY;  vector<string>OPE;    vector<string>SYM; vector<string>IDEN;
+    vector<string>INT;  vector<string>FLOAT;  vector<string>COM;
+
+    for(auto it1 : code){
+        stringstream word(it1);
+        string it;
+        while(word >> it){
+            string r = "", s = it;
+
+            for(int i = 0; i < s.size(); i++){
+                string k;
+                k = s[i];
+                if(operatorMap.find(k) != operatorMap.end() or (symbol.find(k) != symbol.end())){
+                     if(symbol.find(k) != symbol.end()) SYM.push_back(k);
+                     if(operatorMap.find(k) != operatorMap.end())  OPE.push_back(k);
+                     else if(keyword.find(r) != keyword.end())  KEY.push_back(r);
+                     else if(is_identifier(r))IDEN.push_back(r);
+                     else if(is_intiger(r))INT.push_back(r);
+                     else if(is_float(r))FLOAT.push_back(r);
+                     r = "";
+                     continue;
+                }
+                r += s[i];
+            }
+            if(keyword.find(r) != keyword.end())  KEY.push_back(r);
+            else if(symbol.find(r) != symbol.end()) SYM.push_back(r);
+            else if(operatorMap.find(r) != operatorMap.end())  OPE.push_back(r);
+            else if(is_identifier(r))IDEN.push_back(r);
+            else if(is_intiger(r))INT.push_back(r);
+            else if(is_float(r)) FLOAT.push_back(r);
+         }
+    }
+
+    cout << "Total number of Token : "  << KEY.size() + IDEN.size() + OPE.size() + SYM.size() + INT.size() + FLOAT.size() << endl;
+    cout << "Keyword : " << KEY.size() << " ";
+    for(auto it : KEY){
+        cout << it << ' ';
+    }cout << endl;
+
+
+    cout << "Identifier : " << IDEN.size() << " ";
+    for(auto it : IDEN){
+        cout << it << ' ';
+    }cout << endl;
+
+
+    cout << "Operator : " << OPE.size() << " ";
+    for(auto it : OPE){
+        cout << it << ' ';
+    }cout << endl;
+
+
+    cout << "Symbols : " << SYM.size() << " ";
+    for(auto it : SYM){
+        cout << it << ' ';
+    }cout << endl;
+
+
+    cout << "Integer constant : " << INT.size() << " ";
+    for(auto it : INT){
+        cout << it << ' ';
+    }cout << endl;
+
+
+    cout << "Floating Point constant : " << FLOAT.size() << " ";
+    for(auto it : FLOAT){
+        cout << it << ' ';
+    }
+}
+
+ 
+ 
+
