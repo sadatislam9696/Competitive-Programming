@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using   namespace   std;
+#define      nn     '\n'
+#define  ll    long long
+
+const int N = 1e5 + 9;
+int a[N], tree[N];
+
+/// segment tree
+
+void build(int node, int l, int r){
+    if(l == r){
+        tree[node] = a[l];
+        return;
+    }
+    build(2 * node, l, (l + r) / 2);
+    build(2 * node + 1, ((l + r) / 2) + 1, r);
+    tree[node] = min(tree[2 * node], tree[2 * node + 1]);
+}
+int query(int node, int l, int r, int i, int j){
+    if(l >= i and r <= j){
+        return tree[node];
+    }
+    if(r < i or j < l){
+        return INT_MAX;
+    }
+    int left_value = query(2 * node, l, ((l + r) / 2), i, j);
+    int right_value = query(2 * node + 1, ((l + r) / 2) + 1, r, i, j);
+    return min(left_value, right_value);
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1, c = 1;
+    cin >> t;
+    while(t--)
+    {
+      int n, k; cin >> n >> k;
+      for(int i = 1; i <= n; i++){
+        cin >> a[i];
+      }
+
+      build(1, 1, n);
+      cout << "Case " << c++ << ":" << nn;
+      while(k--){
+        int x, y;
+        cin >> x >> y;
+        cout << query(1, 1, n, x, y) << nn;
+      }
+    }
+    return 0;
+}
