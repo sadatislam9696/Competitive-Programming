@@ -1,0 +1,26 @@
+const ll N = 5e5 + 7, mod = 1e9 + 7;
+ll POW(ll a, ll b, ll mod)
+{
+    a %= mod;
+    ll r = 1;
+    for(ll i = b; i > 0; i >>= 1)
+    {
+        if(i & 1)
+            r = (r * a) % mod;
+        a = (a * a) % mod;
+    }
+    return r;
+}
+ 
+ll f[N];
+ll nCr(ll n, ll r)
+{
+    if(n < r)
+        return 0;
+    return f[n] * POW(f[n - r] * f[r], mod - 2, mod) % mod;
+}
+ 
+ll nPr(ll n, ll r)
+{
+    return nCr(n, r) * f[r] % mod;
+}
